@@ -11,16 +11,20 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface NotaDao {
 
-    @Insert(onConflict = REPLACE)
-    suspend fun salva(note: Nota)
+  @Insert(onConflict = REPLACE)
+  suspend fun salva(note: Nota)
 
-    @Query("SELECT * FROM Nota")
-    fun buscaTodas() : Flow<List<Nota>>
+  @Insert
+  suspend fun salva(nota: List<Nota>) {
+    TODO("Not yet implemented")
+  }
 
-    @Query("SELECT * FROM Nota WHERE id = :id")
-    fun buscaPorId(id: Long): Flow<Nota>
+  @Query("SELECT * FROM Nota")
+  fun buscaTodas(): Flow<List<Nota>>
 
-    @Query("DELETE FROM Nota WHERE id = :id")
-    suspend fun remove(id: Long)
+  @Query("SELECT * FROM Nota WHERE id = :id")
+  fun buscaPorId(id: Long): Flow<Nota>
 
+  @Query("DELETE FROM Nota WHERE id = :id")
+  suspend fun remove(id: Long)
 }
