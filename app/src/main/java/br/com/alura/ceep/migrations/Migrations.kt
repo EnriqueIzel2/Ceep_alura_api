@@ -30,7 +30,7 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
     val cursor = database.query("SELECT * FROM $tabelaNova")
     while (cursor.moveToNext()) {
       val id = cursor.getString(
-        cursor.getColumnIndex("id")
+        cursor.getColumnIndexOrThrow("id")
       )
       database.execSQL(
         """
